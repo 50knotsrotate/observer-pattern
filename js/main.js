@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var OddOrEvenObserver_1 = require("./OddOrEvenObserver");
+var NumberLengthObserver_1 = require("./NumberLengthObserver");
+var ContainsThreeObserver_1 = require("./ContainsThreeObserver");
+var NumberSubject_1 = require("./NumberSubject");
+var numberSubject = new NumberSubject_1.NumberSubject();
+var oddOrEvenObserver = new OddOrEvenObserver_1.OddOrEvenObserver(numberSubject);
+var numberLengthObserver = new NumberLengthObserver_1.NumberLengthObserver(numberSubject);
+var containsThreeObserver = new ContainsThreeObserver_1.ContainsThreeObserver(numberSubject);
+numberSubject.attach(oddOrEvenObserver);
+numberSubject.attach(numberLengthObserver);
+numberSubject.attach(containsThreeObserver);
+numberSubject.setState(31);
+numberSubject.setState(5005);
+numberSubject.remove(oddOrEvenObserver);
+numberSubject.remove(numberLengthObserver);
+numberSubject.remove(containsThreeObserver);
+numberSubject.setState(15);
+// Nothing should be logged to the console - Each observer should have been removed.
